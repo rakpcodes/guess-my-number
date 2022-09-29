@@ -21,9 +21,7 @@ document.querySelector('.check').addEventListener('click', function () {
         document.querySelector('.score').textContent = score
     }
 
-    if (score === 0) {
-        document.querySelector('.message').textContent = `Game Over 🤡`
-    } else if (score < 0) {
+    if (score <= 0) {
         document.querySelector('.message').textContent = `Game Over 🤡`
         score = 0
         document.querySelector('.score').textContent = score
