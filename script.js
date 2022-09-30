@@ -11,10 +11,17 @@ document.querySelector('.check').addEventListener('click', function () {
         document.querySelector('.message').textContent = `You didn't pick anything!🥺 Pick a number!`
     } else if (guess === secretNumber) {
         document.querySelector('.message').textContent = `Correct! 🎉`
+        document.querySelector('.number').textContent = secretNumber
+        document.querySelector('.number').style.width = '30rem'
+        document.querySelector('body').style.backgroundColor = '#60b347'
+
+
+
     } else if (guess > secretNumber) {
         document.querySelector('.message').textContent = `Too High! Try lower? 🔽`;
         score--
         document.querySelector('.score').textContent = score
+
     } else if (guess < secretNumber) {
         document.querySelector('.message').textContent = `Too Low! Try higher? 🔼`
         score--
