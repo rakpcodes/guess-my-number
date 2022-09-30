@@ -2,12 +2,12 @@
 
 let secretNumber = Math.floor(Math.random() * 20) + 1
 let score = 20
+let highScore = 0
 console.log(secretNumber)
 
 document.querySelector('.check').addEventListener('click', function () {
 
     const guess = Number(document.querySelector('.guess').value)
-    const highScore = Number(document.querySelector('.highscore').innerText)
 
     if (!guess) {
         document.querySelector('.message').textContent = `You didn't pick anything!🥺 Pick a number!`
@@ -18,6 +18,7 @@ document.querySelector('.check').addEventListener('click', function () {
         document.querySelector('body').style.backgroundColor = '#60b347'
 
         if (score > highScore) {
+            highScore = score
             document.querySelector('.highscore').innerText = score
         }
 
@@ -47,7 +48,7 @@ document.querySelector('.check').addEventListener('click', function () {
 Implement a game reset functionality so that the player can make a new guess using the 'Again!' button.
 
 
-Notes:
+Pseudo:
 
 - Re-randomize secretNumber
 - Reset score and display to .score
@@ -66,4 +67,6 @@ document.querySelector('.again').addEventListener('click', function () {
     document.querySelector('.number').style.width = '15rem'
     document.querySelector('body').style.backgroundColor = '#222'
     document.querySelector('.number').textContent = '?'
+
+    console.log(secretNumber)
 })
