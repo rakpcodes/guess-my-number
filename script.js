@@ -3,19 +3,29 @@
 let secretNumber = Math.floor(Math.random() * 20) + 1
 let score = 20
 let highScore = 0
-console.log(secretNumber)
+console.log(`Wow! You found the secret answer in the console! The answer is: ${secretNumber}`)
+
+const displayMessage = (message) => {
+    document.querySelector('.message').textContent = message
+}
+
+const victoryStyle = (text, width, bg) => {
+    document.querySelector('.number').textContent = text
+    document.querySelector('.number').style.width = width
+    document.querySelector('body').style.backgroundColor = bg
+
+}
+
 
 document.querySelector('.check').addEventListener('click', function () {
 
     const guess = Number(document.querySelector('.guess').value)
 
     if (!guess) {
-        document.querySelector('.message').textContent = `You didn't pick anything!🥺 Pick a number!`
+        displayMessage(`You didn't pick anything!🥺 Pick a number!`)
     } else if (guess === secretNumber) {
-        document.querySelector('.message').textContent = `Correct! 🎉`
-        document.querySelector('.number').textContent = secretNumber
-        document.querySelector('.number').style.width = '30rem'
-        document.querySelector('body').style.backgroundColor = '#60b347'
+        displayMessage(`Correct! 🎉`)
+        victoryStyle(secretNumber, '30rem', '#60b347')
 
         if (score > highScore) {
             highScore = score
@@ -23,19 +33,16 @@ document.querySelector('.check').addEventListener('click', function () {
         }
 
 
-    } else if (guess > secretNumber) {
-        document.querySelector('.message').textContent = `Too High! Try lower? 🔽`;
+    } else if (guess !== secretNumber) {
         score--
         document.querySelector('.score').textContent = score
 
-    } else if (guess < secretNumber) {
-        document.querySelector('.message').textContent = `Too Low! Try higher? 🔼`
-        score--
-        document.querySelector('.score').textContent = score
+        document.querySelector('.message').textContent = guess > secretNumber ? `Too High! Try lower? 🔽` : `Too Low! Try higher? 🔼`;
+
     }
 
     if (score <= 0) {
-        document.querySelector('.message').textContent = `Game Over 🤡`
+        displayMessage(`Game Over 🤡`)
         score = 0
         document.querySelector('.score').textContent = score
     }
@@ -58,7 +65,7 @@ Pseudo:
 
 */
 
-document.querySelector('.again').addEventListener('click', function () {
+document.querySelector('.reset').addEventListener('click', function () {
     secretNumber = Math.floor(Math.random() * 20) + 1
     score = 20
     document.querySelector('.score').textContent = score
@@ -68,5 +75,5 @@ document.querySelector('.again').addEventListener('click', function () {
     document.querySelector('body').style.backgroundColor = '#222'
     document.querySelector('.number').textContent = '?'
 
-    console.log(secretNumber)
+    console.log(`Wow! You found the secret answer in the console! The answer is: ${secretNumber}`)
 })
